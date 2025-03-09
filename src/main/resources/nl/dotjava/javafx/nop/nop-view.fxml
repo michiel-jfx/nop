@@ -13,18 +13,14 @@
       xmlns="http://javafx.com/javafx/23.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
       style="-fx-background-color: #15252b;"
-      fx:controller="nl.dotjava.javafx.nop.NopController">
+      fx:controller="nl.dotjava.javafx.nop.NopController"
+      fx:id="mainPanel">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
     </padding>
 
-    <Label     fx:id="labelUpperRight"  text="upper" />
-    <TextField fx:id="textfieldInput"   style="-fx-text-alignment: left;" />
-    <Label     fx:id="labelBelowLeft"   text="lower" />
-    <Label     fx:id="welcomeText"      text="..." />
-    <Button    fx:id="buttonHelloWorld" onAction="#onHelloButtonClick" text="smelltu" style="-fx-alignment: center;" />
-    <Label     fx:id="dummyEen"         text=" " />
-    <Label     fx:id="dummyTwe"         text=" " />
-    <Label     fx:id="dummyDri"         text=" " />
+    <Label fx:id="labelUpperRight" text="upper" />
+    <Label fx:id="labelBelowLeft"  text="lower" />
+    <Label fx:id="welcomeText"     text="..." />
 
 </VBox>
