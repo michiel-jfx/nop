@@ -11,9 +11,11 @@ This is the app that does nothing. The dark mode version it is.
 colors: #0A0A0A, #121212, #15252B, #161618, #181818, #192734, #212121, #212124, #22303C, #242526, #282828, #3A3B3C, #404040
 
 ## build and run it
+mvn -T 2C clean gluonfx:build gluonfx:package -Pandroid
 mvn clean gluonfx:build gluonfx:package -Pandroid
-mvn -Pandroid gluonfx:install
+mvn -T 2C -Pandroid gluonfx:install
 mvn -Pandroid gluonfx:nativerun
+mvn -Pandroid -X gluonfx:nativerun
 
 note: if you don't have a AndroidManifest.xml, then copy it from:
 /pub/gitlab/javafx/nop/target/gluonfx/aarch64-android/gvm/android_project/app/src/main/AndroidManifest.xml
