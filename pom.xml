@@ -16,18 +16,31 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
-        <gluonfx.maven.plugin.version>1.0.25</gluonfx.maven.plugin.version>
+        <com.gluonhq.charm.glisten.version>6.2.3</com.gluonhq.charm.glisten.version>
+        <com.gluonhq.attach.display.version>4.0.6</com.gluonhq.attach.display.version>
         <org.openjfx.controls.version>17.0.6</org.openjfx.controls.version>
         <org.openjfx.fxml.version>17.0.6</org.openjfx.fxml.version>
         <org.controlsfx.controlsfx.version>11.2.1</org.controlsfx.controlsfx.version>
         <org.kordamp.bootstrapfx.core.version>0.4.0</org.kordamp.bootstrapfx.core.version>
         <junit.version>5.10.2</junit.version>
+        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+        <gluonfx.maven.plugin.version>1.0.25</gluonfx.maven.plugin.version>
+        <org.openjfx.maven.plugin.version>0.0.8</org.openjfx.maven.plugin.version>
 
         <main.class>nl.dotjava.javafx.nop.NopApplication</main.class>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.gluonhq</groupId>
+            <artifactId>charm-glisten</artifactId>
+            <version>${com.gluonhq.charm.glisten.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>display</artifactId>
+            <version>${com.gluonhq.attach.display.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -76,6 +89,20 @@
                 <gluonfx.target>ios</gluonfx.target>
             </properties>
         </profile>
+
+<!--        <profile>-->
+<!--            <id>maven-with-nexus</id>-->
+<!--            <repositories>-->
+<!--                <repository>-->
+<!--                    <id>gluon</id>-->
+<!--                    <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>-->
+<!--                </repository>-->
+<!--                <repository>-->
+<!--                    <id>maven-central</id>-->
+<!--                    <url>https://repo.maven.apache.org/maven2/</url>-->
+<!--                </repository>-->
+<!--            </repositories>-->
+<!--        </profile>-->
     </profiles>
 
     <build>
@@ -89,6 +116,7 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
+            <!-- GluonHQ maven plugin for mvn gluonfx:build gluonfx:package -Pandroid or -Pios -->
             <plugin>
                 <groupId>com.gluonhq</groupId>
                 <artifactId>gluonfx-maven-plugin</artifactId>
@@ -98,10 +126,26 @@
                     <target>${gluonfx.target}</target>
                     <mainClass>${main.class}</mainClass>
                     <reflectionList>
-                        <reflectionClass>nl.dotjava.javafx.nop.NopController</reflectionClass>
                     </reflectionList>
                 </configuration>
             </plugin>
+            <!-- JavaFX maven plugin for mvn javafx:run -->
+<!--            <plugin>-->
+<!--                <groupId>org.openjfx</groupId>-->
+<!--                <artifactId>javafx-maven-plugin</artifactId>-->
+<!--                <version>${org.openjfx.maven.plugin.version}</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>default-cli</id>-->
+<!--                        <goals>-->
+<!--                            <goal>run</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    <mainClass>${main.class}</mainClass>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>

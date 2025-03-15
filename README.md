@@ -11,8 +11,9 @@ This is the app that does nothing. The dark mode version it is.
 colors: #0A0A0A, #121212, #15252B, #161618, #181818, #192734, #212121, #212124, #22303C, #242526, #282828, #3A3B3C, #404040
 
 ## build and run it
-mvn -T 2C clean gluonfx:build gluonfx:package -Pandroid
-mvn clean gluonfx:build gluonfx:package -Pandroid
+mvn -T 2C clean gluonfx:build gluonfx:package -Pandroid   -> 8Gb en 8 threads,  3:45
+mvn clean gluonfx:build gluonfx:package -Pandroid         -> 11Gb en 8 threads, 3:38
+mvn -Pandroid gluonfx:install
 mvn -T 2C -Pandroid gluonfx:install
 mvn -Pandroid gluonfx:nativerun
 mvn -Pandroid -X gluonfx:nativerun
