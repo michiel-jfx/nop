@@ -1,0 +1,12 @@
+[
+  {
+    "name": "com.gluonhq.attach.util.Services",
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "com.gluonhq.attach.display.impl.DisplayServiceFactory",
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  }
+]

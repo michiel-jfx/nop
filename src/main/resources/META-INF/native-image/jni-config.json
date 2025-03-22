@@ -1,0 +1,9 @@
+[
+  {
+    "name": "com.gluonhq.attach.util.impl.AndroidUtil",
+    "methods": [
+      {"name": "attachAndroidContext", "parameterTypes":["java.lang.Object"]},
+      {"name": "substrateGetUtilClass", "parameterTypes":[]}
+    ]
+  }
+]

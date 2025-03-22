@@ -6,6 +6,7 @@ module nl.dotjava.javafx.nop {
     requires org.kordamp.bootstrapfx.core;
     requires com.gluonhq.charm.glisten;
     requires com.gluonhq.attach.display;
+    requires com.gluonhq.attach.util;
 
     opens nl.dotjava.javafx.nop to javafx.fxml;
     exports nl.dotjava.javafx.nop;
