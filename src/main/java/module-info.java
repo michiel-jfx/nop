@@ -1,13 +1,11 @@
 module nl.dotjava.javafx.nop {
     requires javafx.controls;
-    requires javafx.fxml;
 
-    requires org.controlsfx.controls;
-    requires org.kordamp.bootstrapfx.core;
     requires com.gluonhq.charm.glisten;
-    requires com.gluonhq.attach.display;
     requires com.gluonhq.attach.util;
+    requires com.gluonhq.attach.lifecycle;
+    requires com.gluonhq.attach.display;
+    requires com.gluonhq.attach.storage;
 
-    opens nl.dotjava.javafx.nop to javafx.fxml;
     exports nl.dotjava.javafx.nop;
 }

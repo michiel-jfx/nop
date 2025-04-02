@@ -1,12 +1,21 @@
-package nl.dotjava.javafx.support;
+package nl.dotjava.javafx.components;
 
 import javafx.scene.layout.VBox;
+import nl.dotjava.javafx.support.ClickMeasurement;
+import nl.dotjava.javafx.support.ClickListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainVboxPanel extends VBox {
+    private final ClickMeasurement clickMeasurement;
+    private final List<ClickListener> clickListeners = new ArrayList<>();
+
     public MainVboxPanel() {
         setStyle("-fx-background-color: #15252b;");
         setPrefWidth(1080);
         setPrefHeight(2139);
+        this.clickMeasurement = new ClickMeasurement();
 
         // Add EventHandlers
         // 1. Key events
@@ -24,13 +33,17 @@ public class MainVboxPanel extends VBox {
 
         // 2. Mouse events
         setOnMouseClicked(event -> {
-            System.out.println("***** Mouse clicked!");
+            //System.out.println("***** Mouse clicked!");
+            clickMeasurement.clickPerformed();
+            if (clickMeasurement.sameClicks()) {
+                notifyClickListeners();
+            }
         });
         setOnMousePressed(event -> {
-            System.out.println("***** Mouse pressed!");
+            //System.out.println("***** Mouse pressed!");
         });
         setOnMouseExited(event -> {
-            System.out.println("***** Mouse exited!");
+            //System.out.println("***** Mouse exited!");
         });
 
         // 3. Rotating events
@@ -59,14 +72,15 @@ public class MainVboxPanel extends VBox {
         });
 
         // 5. Touch events
+        // temporarily disabled because much
         setOnTouchMoved(event -> {
-            System.out.println("***** Touch Moved! Coordinates: " + event.getTouchPoint().getX() + ", " + event.getTouchPoint().getY());
+            //System.out.println("***** Touch Moved! Coordinates: " + event.getTouchPoint().getX() + ", " + event.getTouchPoint().getY());
         });
         setOnTouchPressed(event -> {
-            System.out.println("***** Touch Pressed! TouchCount = " + event.getTouchCount());
+            //System.out.println("***** Touch Pressed! TouchCount = " + event.getTouchCount());
         });
         setOnTouchReleased(event -> {
-            System.out.println("***** Touch Released!");
+            //System.out.println("***** Touch Released!");
         });
 
         // 6. Zoom events
@@ -79,5 +93,27 @@ public class MainVboxPanel extends VBox {
         setOnZoomFinished(event -> {
             System.out.println("***** Zoom finished!");
         });
+    }
+    /**
+     * Register a listener to be notified when same clicks are detected
+     * @param listener The listener to add
+     */
+    public void addSameClickListener(ClickListener listener) {
+        clickListeners.add(listener);
+    }
+    /**
+     * Remove a previously registered listener
+     * @param listener The listener to remove
+     */
+    public void removeSameClickListener(ClickListener listener) {
+        clickListeners.remove(listener);
+    }
+    /**
+     * Notify all registered listeners when same clicks are detected
+     */
+    private void notifyClickListeners() {
+        for (ClickListener listener : clickListeners) {
+            listener.sameClickEvent();
+        }
     }
 }

@@ -178,15 +178,20 @@ rm -rf ~/.gluon/substrate/*
 ll ~/.gluon/substrate
 mvn gluonfx:build gluonfx:package -Pandroid
 ls -sla target/gluonfx/aarch64-android/gvm/android_project/app/src/main/jniLibs/
+arm64-v8 (which is used in Fairphone 4)
 
 ll $ANDROID_SDK_ROOT/platforms
-arm64-v8 (which is used in Fairphone 4)
+android-33 (which is used in Faiphone 4)
+android-34
+
 $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --list_installed | grep "platforms;android-33"
 platforms;android-33        | 3             | Android SDK Platform 33          | platforms/android-33
 
 in pom.xml en in AndroidManifest.xml the target SDK gezet op API 33
 
 ls ~/.gluon/substrate/*
+javafxStaticSdk 24-ea+7.1
+javaStaticSdk 24-2.1
 
 mvn -Pandroid gluonfx:install
 mvn -Pandroid -X gluonfx:nativerun
@@ -195,3 +200,15 @@ toch weer:
 <activity android:name='com.gluonhq.helloandroid.MainActivity'
 android:exported="true"
 android:configChanges="orientation|keyboardHidden">
+
+### how to build and run
+
+mvn clean
+rm -rf ~/.gluon/substrate/*
+mvn gluonfx:build gluonfx:package -Pandroid
+mvn -Pandroid gluonfx:install
+mvn -Pandroid -X gluonfx:nativerun
+
+02-04-2024
+==========
+added click measurement and listener to handle same click event
