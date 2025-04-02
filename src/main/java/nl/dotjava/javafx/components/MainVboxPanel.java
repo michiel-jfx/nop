@@ -2,14 +2,14 @@ package nl.dotjava.javafx.components;
 
 import javafx.scene.layout.VBox;
 import nl.dotjava.javafx.support.ClickMeasurement;
-import nl.dotjava.javafx.support.ClickListener;
+import nl.dotjava.javafx.support.MotionEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainVboxPanel extends VBox {
     private final ClickMeasurement clickMeasurement;
-    private final List<ClickListener> clickListeners = new ArrayList<>();
+    private final List<MotionEventListener> motionEventListeners = new ArrayList<>();
 
     public MainVboxPanel() {
         setStyle("-fx-background-color: #15252b;");
@@ -36,7 +36,7 @@ public class MainVboxPanel extends VBox {
             //System.out.println("***** Mouse clicked!");
             clickMeasurement.clickPerformed();
             if (clickMeasurement.sameClicks()) {
-                notifyClickListeners();
+                notifySameClicks();
             }
         });
         setOnMousePressed(event -> {
@@ -59,10 +59,10 @@ public class MainVboxPanel extends VBox {
 
         // 4. Swipe Events
         setOnSwipeLeft(event -> {
-            System.out.println("***** Swipe Left detected!");
+            notifySwipeLeft();
         });
         setOnSwipeRight(event -> {
-            System.out.println("***** Swipe Right detected!");
+            notifySwipeRight();
         });
         setOnSwipeUp(event -> {
             System.out.println("***** Swipe Up detected!");
@@ -94,26 +94,20 @@ public class MainVboxPanel extends VBox {
             System.out.println("***** Zoom finished!");
         });
     }
-    /**
-     * Register a listener to be notified when same clicks are detected
-     * @param listener The listener to add
-     */
-    public void addSameClickListener(ClickListener listener) {
-        clickListeners.add(listener);
+
+    public void addMotionListener(MotionEventListener listener) {
+        motionEventListeners.add(listener);
     }
-    /**
-     * Remove a previously registered listener
-     * @param listener The listener to remove
-     */
-    public void removeSameClickListener(ClickListener listener) {
-        clickListeners.remove(listener);
+    public void removeMotionListener(MotionEventListener listener) {
+        motionEventListeners.remove(listener);
     }
-    /**
-     * Notify all registered listeners when same clicks are detected
-     */
-    private void notifyClickListeners() {
-        for (ClickListener listener : clickListeners) {
-            listener.sameClickEvent();
-        }
+    private void notifySameClicks() {
+        motionEventListeners.forEach(MotionEventListener::sameClickEvent);
+    }
+    private void notifySwipeLeft() {
+        motionEventListeners.forEach(MotionEventListener::swipeLeftEvent);
+    }
+    private void notifySwipeRight() {
+        motionEventListeners.forEach(MotionEventListener::swipeRightEvent);
     }
 }

@@ -13,13 +13,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import nl.dotjava.javafx.components.MainVboxPanel;
-import nl.dotjava.javafx.support.ClickListener;
+import nl.dotjava.javafx.support.MotionEventListener;
 
 import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 import static javafx.scene.input.KeyCode.BACK_SPACE;
 import static javafx.scene.input.KeyCode.ESCAPE;
 
-public class NopApplication extends Application implements ClickListener {
+public class NopApplication extends Application implements MotionEventListener {
 
     private final AppManager appManager = AppManager.initialize(this::postInit);
     private volatile boolean cleanupAlreadyRun = false;
@@ -43,9 +43,9 @@ public class NopApplication extends Application implements ClickListener {
             System.out.println("***** javafx version " + System.getProperty("javafx.version") + " on java " + System.getProperty("java.version"));
             rootVbox = new MainVboxPanel();
             rootVbox.setAlignment(Pos.CENTER);
-            ((MainVboxPanel)rootVbox).addSameClickListener(this);
+            // register motion listener
+            ((MainVboxPanel)rootVbox).addMotionListener(this);
 
-            //Scene scene = new Scene(rootVbox, 2139, 1080);
             this.view = new View(rootVbox) {
                 @Override
                 protected void updateAppBar(AppBar appBar) {
@@ -67,8 +67,7 @@ public class NopApplication extends Application implements ClickListener {
 
     private void postInit(Scene scene) {
         System.out.println("***** 3. postInit with scene");
-        //Swatch.LIGHT_GREEN.assignTo(scene);
-        //scene.getStylesheets().add(NopApplication.class.getResource("/styles.css").toExternalForm());
+        // add back button handler
         if (Platform.isAndroid()) {
             addBackButtonHandler(scene);
         }
@@ -90,6 +89,14 @@ public class NopApplication extends Application implements ClickListener {
     public void sameClickEvent() {
         handleBackButton();
     }
+    @Override
+    public void swipeLeftEvent() {
+        System.out.println("***** Swipe Left detected!");
+    }
+    @Override
+    public void swipeRightEvent() {
+        System.out.println("***** Swipe Right detected!");
+    }
 
     private void handleBackButton() {
         System.out.println("***** 6. trying to gracefully exiting the application");
@@ -97,7 +104,6 @@ public class NopApplication extends Application implements ClickListener {
             cleanupResources();
             System.out.println("***** 7. platform exit (javafx)");
             javafx.application.Platform.exit();
-
             // try not to use system.exit as it can cause abrupt termination, instead use a more gentle approach through services
             Services.get(LifecycleService.class).ifPresent(service -> {
                 System.out.println("***** 8. requesting android activity finish");
