@@ -7,11 +7,11 @@ import nl.dotjava.javafx.support.MotionEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainVboxPanel extends VBox {
+public class MainMobilePanel extends VBox {
     private final ClickMeasurement clickMeasurement;
     private final List<MotionEventListener> motionEventListeners = new ArrayList<>();
 
-    public MainVboxPanel() {
+    public MainMobilePanel() {
         setStyle("-fx-background-color: #15252b;");
         setPrefWidth(1080);
         setPrefHeight(2139);

@@ -1,5 +1,4 @@
 module nl.dotjava.javafx.nop {
-    requires javafx.controls;
 
     requires com.gluonhq.charm.glisten;
     requires com.gluonhq.attach.util;

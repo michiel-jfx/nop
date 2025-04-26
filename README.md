@@ -209,6 +209,10 @@ mvn gluonfx:build gluonfx:package -Pandroid
 mvn -Pandroid gluonfx:install
 mvn -Pandroid -X gluonfx:nativerun
 
-02-04-2024
+02-04-2025
 ==========
 added click measurement and listener to handle same click event
+
+26-04-2025
+==========
+added popup panel with jpg on swipe left
