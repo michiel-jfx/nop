@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>nl.dotjava.javafx</groupId>
+    <artifactId>nop</artifactId>
+    <version>0.0.1</version>
+    <name>Nop</name>
+    <description>Nop - the app that does nothing</description>
+
+    <properties>
+        <android.compileSdkVersion>33</android.compileSdkVersion>
+        <android.minSdkVersion>26</android.minSdkVersion>
+        <android.targetSdkVersion>33</android.targetSdkVersion>
+        <android.buildToolsVersion>33.0.2</android.buildToolsVersion>
+
+        <java.version>23</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <javafx.controls.version>24-headless+0-2024-12-02-101029</javafx.controls.version>
+        <charm.glisten.version>6.2.3</charm.glisten.version>
+        <attach.util.version>4.0.21</attach.util.version>
+        <attach.lifecycle.version>4.0.21</attach.lifecycle.version>
+        <attach.display.version>4.0.21</attach.display.version>
+        <attach.storage.version>4.0.21</attach.storage.version>
+        <attach.statusbar.version>4.0.21</attach.statusbar.version>
+        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+        <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
+        <!-- use maven 3.8.8 with 1.0.23 -->
+        <!-- <gluonfx.maven.plugin.version>1.0.23</gluonfx.maven.plugin.version> -->
+        <!-- use maven 3.9.9 with 1.0.25 -->
+        <gluonfx.maven.plugin.version>1.0.25</gluonfx.maven.plugin.version>
+
+        <main.class>nl.dotjava.javafx.nop.NopApplication</main.class>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.controls.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gluonhq</groupId>
+            <artifactId>charm-glisten</artifactId>
+            <version>${charm.glisten.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>util</artifactId>
+            <version>${attach.util.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>lifecycle</artifactId>
+            <version>${attach.lifecycle.version}</version>
+        </dependency>
+        <!-- needed for gluon license -->
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>display</artifactId>
+            <version>${attach.display.version}</version>
+        </dependency>
+        <!-- needed for gluon license -->
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>storage</artifactId>
+            <version>${attach.storage.version}</version>
+        </dependency>
+        <!-- <dependency>                                       -->
+        <!--     <groupId>com.gluonhq.attach</groupId>          -->
+        <!--     <artifactId>statusbar</artifactId>             -->
+        <!--     <version>${attach.statusbar.version}</version> -->
+        <!-- </dependency>                                      -->
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>android</id>
+            <properties>
+                <gluonfx.target>android</gluonfx.target>
+                <packageName>nl.dotjava.javafx.nop</packageName>
+                <manifestPath>${project.basedir}/android/AndroidManifest.xml</manifestPath>
+                <compileSdkVersion>${android.compileSdkVersion}</compileSdkVersion>
+                <minSdkVersion>${android.minSdkVersion}</minSdkVersion>
+                <targetSdkVersion>${android.targetSdkVersion}</targetSdkVersion>
+                <buildToolsVersion>${android.buildToolsVersion}</buildToolsVersion>
+            </properties>
+        </profile>
+        <profile>
+            <id>ios</id>
+            <properties>
+                <gluonfx.target>ios</gluonfx.target>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <!-- gluonfx maven plugin to build native android or ios package -->
+            <plugin>
+                <groupId>com.gluonhq</groupId>
+                <artifactId>gluonfx-maven-plugin</artifactId>
+                <version>${gluonfx.maven.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <verbose>true</verbose>
+                    <target>${gluonfx.target}</target>
+                    <!-- <android> -->
+                    <!--     <packageName>nl.dotjava.javafx.nop</packageName>    -->
+                    <!-- </android> -->
+                    <nativeImageArgs>
+                        <arg>--allow-incomplete-classpath</arg>
+                        <!-- <arg>-H:CompilerBackend=llvm</arg>                       -->
+                        <!-- <arg>-H:CompilerPath=aarch64-linux-android30-clang</arg> -->
+                        <!-- <arg>-H:-CheckToolchain</arg>                            -->
+                        <!-- <arg>-H:-UseCAPCache</arg>                               -->
+                        <!-- <arg>-H:-NewCAPCache</arg>                               -->
+                        <!-- <arg>-H:-CheckToolchain</arg>                            -->
+                    </nativeImageArgs>
+                    <attachList>
+                        <list>util</list>
+                        <list>lifecycle</list>
+                        <list>display</list>
+                        <list>storage</list>
+                        <!-- <list>statusbar</list> -->
+                    </attachList>
+                    <jniList>com.gluonhq.attach.util.impl.AndroidUtil</jniList>
+                    <reflectionList>
+                        <list>com.gluonhq.attach.util.Services</list>
+                        <!-- needed? -->
+                        <!-- <list>com.gluonhq.attach.display.impl.DisplayServiceFactory</list> -->
+                    </reflectionList>
+                    <mainClass>${main.class}</mainClass>
+                </configuration>
+            </plugin>
+            <!-- javafx maven plugin for local deployment -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>${javafx.maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>${main.class}</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
