@@ -3,7 +3,7 @@ NOP is the assembly instruction that does nothing; it is the no operation.
 
 Actually, it is close to nothing since the CPU cycles through it, so a tiny very tiny amount of time passes. And it also uses one bit of space.
 
-Back in the eighties we used to make demos (on Amiga 500) in assembly and put some NOPs on places in the code which later where altered (self-modifying code). But that's another story.
+Back in the days we used to make demos (on Amiga 500) in assembly and put some NOPs on places in the code which later where altered (self-modifying code). But that's another story.
 
 This is the app that does nothing. The dark mode version it is ; ) Entirely nothing? Well, it is the skeleton to use for new mobile applications. All those apps should have a proper exit function. So the Nop app does nothing but can exist properly.
 
@@ -40,7 +40,7 @@ When you run the application from your laptop, you will see various information 
 Also kept in the code on purpose are some unused import statements. These are left for your courtesy and useful when adding a popup or an image.
 
 ## Manifest file
-In this first version, there only is an android folder with an AndroidManifest file present and the famous Nop image art. The manifest file is based on the Gluon helloandroid project, see [GluonHello](https://github.com/gluonhq/gluon-samples/tree/master/HelloGluon). By using Gluon, it is possible to have great interactions with your phone and will also have a popup screen when you start your app when using the commercial free version. 
+In this first version, there only is an android folder with an AndroidManifest file present amongst the famous Nop image art created by my daughter. The manifest file is based on the Gluon helloandroid project, see [GluonHello](https://github.com/gluonhq/gluon-samples/tree/master/HelloGluon). By using Gluon, it is possible to have great interactions with your phone and will also have a popup screen when you start your app when using the commercial free version. 
 
 See the other project [IceConverter](https://github.com/michiel-jfx/iceconverter), which is also a JavaFX mobile phone application but without the Gluon popup. This version uses @FXML and has fewer possibilities to interact with the mobile phone. It does not have the commercial popup, though.
 
