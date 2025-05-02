@@ -3,9 +3,9 @@ NOP is the assembly instruction that does nothing; it is the no operation.
 
 Actually, it is close to nothing since the CPU cycles through it, so a tiny very tiny amount of time passes. And it also uses one bit of space.
 
-Back in the days we used to make demos (on Amiga 500) in assembly and put some NOPs on places in the code which later where altered (self-modifying code). But that's another story.
+Back in the days we used to make demos in assembly and put some NOPs on places in the code which later where altered (self-modifying code).
 
-This is the app that does nothing. The dark mode version it is ; ) Entirely nothing? Well, it is the skeleton to use for new mobile applications. All those apps should have a proper exit function. So the Nop app does nothing but can exist properly.
+This is the app that does nothing, dark-mode version it is ; ) Entirely nothing? Well, it is a skeleton to use for new mobile applications. All those apps should have a proper exit function, So this Nop app does nothing but can exist properly.
 
 See www.dotjava.nl/nop for background.
 
@@ -23,7 +23,7 @@ The mobile app is build with the following versions:
 
 Why is this important? Before upgrading any artifacts in your project, be sure to make a release of a working version for your various targets (e.g., iOS and Android) and then upgrade the artifacts. Experience tells it's a delicate balance of getting it all together and deploying it on your phone.
 
-## Build and run on your phone
+## Build and run on your phone (android)
 ```
 mvn clean
 rm -rf ~/.gluon/substrate/*
@@ -32,6 +32,9 @@ mvn -Pandroid gluonfx:install
 mvn -Pandroid -X gluonfx:nativerun
 ```
 This should do the trick.
+
+## Build and run on your iPhone
+work in progress
 
 ## Information
 When you run the application from your laptop, you will see various information on your console. The project has all `System.out` statements on purpose to provide information on what's happening. For example:
@@ -42,7 +45,7 @@ Also kept in the code on purpose are some unused import statements. These are le
 ## Manifest file
 In this first version, there only is an android folder with an AndroidManifest file present amongst the famous Nop image art created by my daughter. The manifest file is based on the Gluon helloandroid project, see [GluonHello](https://github.com/gluonhq/gluon-samples/tree/master/HelloGluon). By using Gluon, it is possible to have great interactions with your phone and will also have a popup screen when you start your app when using the commercial free version. 
 
-See the other project [IceConverter](https://github.com/michiel-jfx/iceconverter), which is also a JavaFX mobile phone application but without the Gluon popup. This version uses @FXML and has fewer possibilities to interact with the mobile phone. It does not have the commercial popup, though.
+See the other project [IceConverter](https://github.com/michiel-jfx/iceconverter), which is also a JavaFX mobile phone application but without the Gluon popup. This version uses @FXML only and has fewer possibilities to interact with the mobile phone. It does not have the commercial popup, though.
 
 ## Exiting
 So as mentioned, the app has the ability to exit. This was done by implementing a motion listener (clicks, touch and motion) in the main application. The MainBoxPanel notifies whichever needs to be informed. In the mobile Nop application, besides the exit signal, also the swipe left and right are already ready to use.
