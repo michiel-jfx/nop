@@ -1,11 +1,16 @@
 # The NOP android app
 NOP is the assembly instruction that does nothing; it is the no operation.
 
-Actually, it is close to nothing since the CPU cycles through it, so a tiny very tiny amount of time passes. And it also uses one bit of space.
+Actually, it is close to nothing since the CPU cycles through it, so a tiny very tiny amount of time passes. And it also
+uses one bit of space.
 
-Back in the days we used to make demos in assembly and put some NOPs on places in the code which later where altered (self-modifying code).
+Back in the days we used to make demos in assembly and put some NOPs on places in the code which later where altered
+(self-modifying code).
 
-This is the app that does nothing, dark-mode version it is ; ) Entirely nothing? Well, it is a skeleton to use for new mobile applications. All those apps should have a proper exit function, So this Nop app does nothing but can exist properly.
+This is the app that does nothing, dark-mode version it is ; ) Entirely nothing? Well, it is a skeleton to use for new
+mobile applications and all those apps should have a proper exit function, so this Nop app does nothing but exit
+nicely. It has a function for it to allow the user to tap three times on the screen and when the same amount of interval
+time is between them (with some margin), it will exit the application.
 
 See www.dotjava.nl/nop for background.
 
@@ -37,7 +42,7 @@ This should do the trick.
 work in progress
 
 ## Information
-When you run the application from your laptop, you will see various information on your console. The project has all `System.out` statements on purpose to provide information on what's happening. For example:
+When you run the application from your laptop, you will see various information on your console. The project has all `System.out` statements on purpose to provide information on what's happening. For example:<br/>
 ![Image](https://github.com/user-attachments/assets/d9f28f9d-c879-483c-94d1-cdef291a9009)
 
 Also kept in the code on purpose are some unused import statements. These are left for your courtesy and useful when adding a popup or an image.
