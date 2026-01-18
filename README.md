@@ -7,7 +7,7 @@ Back in the eighties we used to make demos (on Amiga 500) in assembly and put so
 
 This is the app that does nothing. The dark mode version it is.
 
-## Versions
+## versions
 The mobile app is built with the following versions:
 
 | What                   | Version               | See                                                                  |
@@ -22,7 +22,7 @@ The mobile app is built with the following versions:
 | Javafx maven plugin    | 0.0.8                 | https://mvnrepository.com/artifact/org.openjfx/javafx-maven-plugin   |
 It is my experience it's though to find the right combination of versions and get it to work in the Google Play Store.
 The previous version used a newer version of GraalVM (and a newer version of Java) but failed to pass the Google Play
-Console requirements (using 16Kb pagesize) because the newer version of GraalVM used an older version of the Gluonfx
+Console requirements (using a 16Kb pagesize) because the newer version of GraalVM used an older version of the Gluonfx
 maven plugin.
 
 ## darkmode theme
@@ -30,12 +30,15 @@ colors: #0A0A0A, #121212, #15252B, #161618, #181818, #192734, #212121, #212124, 
 
 ## build and run it
 ```
-mvn -T 2C clean gluonfx:build gluonfx:package -Pandroid   -> 8Gb en 8 threads,  3:45
-mvn clean gluonfx:build gluonfx:package -Pandroid         -> 11Gb en 8 threads, 3:38
+mvn clean gluonfx:build gluonfx:package -Pandroid
 mvn -Pandroid gluonfx:install
-mvn -T 2C -Pandroid gluonfx:install
 mvn -Pandroid gluonfx:nativerun
 mvn -Pandroid -X gluonfx:nativerun
+```
+If your can perform better, you cab try these as well
+```
+mvn -T 2C clean gluonfx:build gluonfx:package -Pandroid
+mvn -T 2C -Pandroid gluonfx:install
 ```
 
 note: if you don't have a AndroidManifest.xml, then copy it from:
@@ -60,7 +63,7 @@ and make changes to fit your needs
 ## icons
 make the 1024x1024 icon then see:  https://www.appicon.co/
 
-## History
+## history
 | When       | What                                                          |
 |------------|---------------------------------------------------------------|
 | 02-04-2025 | added click measurement and listener to handle 3x click event |
