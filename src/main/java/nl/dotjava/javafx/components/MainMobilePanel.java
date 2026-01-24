@@ -1,6 +1,7 @@
 package nl.dotjava.javafx.components;
 
 import javafx.scene.layout.VBox;
+import nl.dotjava.javafx.support.AppLogger;
 import nl.dotjava.javafx.support.ClickMeasurement;
 import nl.dotjava.javafx.support.MotionEventListener;
 
@@ -20,41 +21,41 @@ public class MainMobilePanel extends VBox {
         // Add EventHandlers
         // 1. Key events
         setOnInputMethodTextChanged(event -> {
-            System.out.println("***** Input method changed!");
+            AppLogger.info("Input method changed!");
         });
         setOnKeyPressed(event -> {
-            System.out.println("***** Key pressed: " + event.getCode());
+            AppLogger.info("Key pressed: " + event.getCode());
         });
         setOnKeyReleased(event -> {
-            System.out.println("***** Key released: " + event.getCode());
+            AppLogger.info("Key released: " + event.getCode());
         });
         // Make VBox focusable to receive KeyEvent
         setFocusTraversable(true);
 
         // 2. Mouse events
         setOnMouseClicked(event -> {
-            //System.out.println("***** Mouse clicked!");
+            AppLogger.info("Mouse clicked");
             clickMeasurement.clickPerformed();
             if (clickMeasurement.sameClicks()) {
                 notifySameClicks();
             }
         });
         setOnMousePressed(event -> {
-            //System.out.println("***** Mouse pressed!");
+            AppLogger.info("Mouse pressed");
         });
         setOnMouseExited(event -> {
-            //System.out.println("***** Mouse exited!");
+            AppLogger.info("Mouse exited");
         });
 
         // 3. Rotating events
         setOnRotate(event -> {
-            System.out.println("***** Rotate detected!");
+            AppLogger.info("Rotate detected");
         });
         setOnRotationStarted(event -> {
-            System.out.println("***** Rotation started detected!");
+            AppLogger.info("Rotation started detected");
         });
         setOnRotationFinished(event -> {
-            System.out.println("***** Rotation finished detected!");
+            AppLogger.info("Rotation finished detected");
         });
 
         // 4. Swipe Events
@@ -65,33 +66,33 @@ public class MainMobilePanel extends VBox {
             notifySwipeRight();
         });
         setOnSwipeUp(event -> {
-            System.out.println("***** Swipe Up detected!");
+            AppLogger.info("Swipe Up detected!");
         });
         setOnSwipeDown(event -> {
-            System.out.println("***** Swipe Down detected!");
+            AppLogger.info("Swipe Down detected!");
         });
 
         // 5. Touch events
         // temporarily disabled because much
         setOnTouchMoved(event -> {
-            //System.out.println("***** Touch Moved! Coordinates: " + event.getTouchPoint().getX() + ", " + event.getTouchPoint().getY());
+            //AppLogger.info("Touch Moved, Coordinates: " + event.getTouchPoint().getX() + ", " + event.getTouchPoint().getY());
         });
         setOnTouchPressed(event -> {
-            //System.out.println("***** Touch Pressed! TouchCount = " + event.getTouchCount());
+            //AppLogger.info("Touch Pressed, TouchCount = " + event.getTouchCount());
         });
         setOnTouchReleased(event -> {
-            //System.out.println("***** Touch Released!");
+            //AppLogger.info("Touch Released");
         });
 
         // 6. Zoom events
         setOnZoom(event -> {
-            System.out.println("***** Zoom detected with factor: " + event.getZoomFactor());
+            AppLogger.info("Zoom detected with factor: " + event.getZoomFactor());
         });
         setOnZoomStarted(event -> {
-            System.out.println("***** Zoom started!");
+            AppLogger.info("Zoom started!");
         });
         setOnZoomFinished(event -> {
-            System.out.println("***** Zoom finished!");
+            AppLogger.info("Zoom finished!");
         });
     }
 

@@ -12,7 +12,7 @@ The mobile app is built with the following versions:
 
 | What                   | Version               | See                                                                  |
 |------------------------|-----------------------|----------------------------------------------------------------------|
-| Nop                    | 0.1                   | this, see https://www.dotjava.nl/iceco                               |
+| Nop                    | 0.1                   | this, see https://www.dotjava.nl/nop                                 |
 | GraalVM 22 with Gluon  | native-image 22.1.0.1 | https://github.com/graalvm/graalvm-ce-builds/releases/tag/jdk-22.0.1 |
 | JavaFX controls & fxml | 17.0.17               | https://mvnrepository.com/artifact/org.openjfx/javafx-controls       |
 | Controlsfx             | 11.2.2                | https://mvnrepository.com/artifact/org.controlsfx/controlsfx         |
@@ -33,12 +33,12 @@ colors: #0A0A0A, #121212, #15252B, #161618, #181818, #192734, #212121, #212124, 
 mvn clean gluonfx:build gluonfx:package -Pandroid
 mvn -Pandroid gluonfx:install
 mvn -Pandroid gluonfx:nativerun
-mvn -Pandroid -X gluonfx:nativerun
 ```
-If your can perform better, you cab try these as well
+If you find compilation slower than usual, you can try these:
 ```
 mvn -T 2C clean gluonfx:build gluonfx:package -Pandroid
 mvn -T 2C -Pandroid gluonfx:install
+mvn -Pandroid -X gluonfx:nativerun
 ```
 
 note: if you don't have a AndroidManifest.xml, then copy it from:
@@ -47,21 +47,8 @@ to:
 /pub/gitlab/javafx/nop/src/android/AndroidManifest.xml
 and make changes to fit your needs
 
-## using custom resources
-```
-<resources>
-    <resource>
-        <directory>src/main/resources</directory>
-        <includes>
-            <include>**/*.fxml</include>
-            <include>**/*.css</include>
-        </includes>
-    </resource>
-</resources>
-```
-
 ## icons
-make the 1024x1024 icon then see:  https://www.appicon.co/
+My daughter made the iconic nop logo, for the various resolutions like the 1024x1024 icon then see:  https://www.appicon.co/
 
 ## history
 | When       | What                                                          |
