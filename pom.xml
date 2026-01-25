@@ -6,41 +6,38 @@
 
     <groupId>nl.dotjava.javafx</groupId>
     <artifactId>nop</artifactId>
-    <version>0.0.1</version>
+    <version>0.2</version>
     <name>Nop</name>
-    <description>Nop - the app that does nothing</description>
 
     <properties>
-        <android.compileSdkVersion>33</android.compileSdkVersion>
-        <android.minSdkVersion>26</android.minSdkVersion>
-        <android.targetSdkVersion>33</android.targetSdkVersion>
-        <android.buildToolsVersion>33.0.2</android.buildToolsVersion>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 
-        <java.version>23</java.version>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <maven.compiler.release>21</maven.compiler.release>
+        <android.minSdkVersion>35</android.minSdkVersion>
+        <android.targetSdkVersion>36</android.targetSdkVersion>
+        <android.compileSdkVersion>36</android.compileSdkVersion>
+        <android.buildToolsVersion>35.0.0</android.buildToolsVersion>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <javafx.controls.version>24-headless+0-2024-12-02-101029</javafx.controls.version>
+        <org.openjfx.controls.version>17.0.17</org.openjfx.controls.version>
+        <org.openjfx.fxml.version>17.0.17</org.openjfx.fxml.version>
+        <org.controlsfx.controlsfx.version>11.2.2</org.controlsfx.controlsfx.version>
+
         <charm.glisten.version>6.2.3</charm.glisten.version>
-        <attach.util.version>4.0.21</attach.util.version>
-        <attach.lifecycle.version>4.0.21</attach.lifecycle.version>
-        <attach.display.version>4.0.21</attach.display.version>
-        <attach.storage.version>4.0.21</attach.storage.version>
-        <attach.statusbar.version>4.0.21</attach.statusbar.version>
-
-        <junit.version>5.10.2</junit.version>
-        <org.assertj.core>3.27.3</org.assertj.core>
-
-        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+        <gluonhq.attach.util.version>4.0.24</gluonhq.attach.util.version>
+        <gluonhq.attach.lifecycle.version>4.0.24</gluonhq.attach.lifecycle.version>
+        <gluonhq.attach.display.version>4.0.24</gluonhq.attach.display.version>
+        <gluonhq.attach.storage.version>4.0.24</gluonhq.attach.storage.version>
+        <gluonhq.attach.statusbar.version>4.0.24</gluonhq.attach.statusbar.version>
+        <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
-        <!-- use maven 3.8.8 with 1.0.23 -->
-        <!-- <gluonfx.maven.plugin.version>1.0.23</gluonfx.maven.plugin.version> -->
-        <!-- use maven 3.9.9 with 1.0.25 -->
-        <gluonfx.maven.plugin.version>1.0.25</gluonfx.maven.plugin.version>
+        <gluonfx.maven.plugin.version>1.0.28</gluonfx.maven.plugin.version>
+
+        <org.junit.jupiter.version>6.0.2</org.junit.jupiter.version>
+        <org.assertj.version>3.27.7</org.assertj.version>
 
         <main.class>nl.dotjava.javafx.nop.NopApplication</main.class>
     </properties>
@@ -49,7 +46,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>${javafx.controls.version}</version>
+            <version>${org.openjfx.controls.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gluonhq</groupId>
@@ -59,48 +56,41 @@
         <dependency>
             <groupId>com.gluonhq.attach</groupId>
             <artifactId>util</artifactId>
-            <version>${attach.util.version}</version>
+            <version>${gluonhq.attach.util.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gluonhq.attach</groupId>
             <artifactId>lifecycle</artifactId>
-            <version>${attach.lifecycle.version}</version>
+            <version>${gluonhq.attach.lifecycle.version}</version>
         </dependency>
-        <!-- needed for gluon license -->
         <dependency>
             <groupId>com.gluonhq.attach</groupId>
             <artifactId>display</artifactId>
-            <version>${attach.display.version}</version>
+            <version>${gluonhq.attach.display.version}</version>
         </dependency>
-        <!-- needed for gluon license -->
         <dependency>
             <groupId>com.gluonhq.attach</groupId>
             <artifactId>storage</artifactId>
-            <version>${attach.storage.version}</version>
+            <version>${gluonhq.attach.storage.version}</version>
         </dependency>
-        <!-- <dependency>                                       -->
-        <!--     <groupId>com.gluonhq.attach</groupId>          -->
-        <!--     <artifactId>statusbar</artifactId>             -->
-        <!--     <version>${attach.statusbar.version}</version> -->
-        <!-- </dependency>                                      -->
 
         <!-- testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
+            <version>${org.junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
+            <version>${org.junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>${org.assertj.core}</version>
+            <version>${org.assertj.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -137,7 +127,7 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
-            <!-- gluonfx maven plugin to build a native android or ios package -->
+            <!-- gluonfx maven plugin to build native android or ios package -->
             <plugin>
                 <groupId>com.gluonhq</groupId>
                 <artifactId>gluonfx-maven-plugin</artifactId>
@@ -172,6 +162,12 @@
                         <!-- <list>com.gluonhq.attach.display.impl.DisplayServiceFactory</list> -->
                     </reflectionList>
                     <mainClass>${main.class}</mainClass>
+                    <!-- added for Google Play Console -->
+                    <releaseConfiguration>
+                        <appLabel>Nop</appLabel>
+                        <versionCode>1</versionCode>
+                        <versionName>1.2</versionName>
+                    </releaseConfiguration>
                 </configuration>
             </plugin>
             <!-- javafx maven plugin for local deployment -->

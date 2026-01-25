@@ -4,8 +4,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 /**
- * Simple class to measure time between clicks. Goal is to act when both times between three
- * clicks are the same, allowing a certain margin (relative and absolute for greater lengths).
+ * Simple class to measure time between clicks. Goal is to act when both times between three clicks are the same,
+ * allowing a certain margin (relative and absolute for greater lengths).
  */
 public class ClickMeasurement {
 

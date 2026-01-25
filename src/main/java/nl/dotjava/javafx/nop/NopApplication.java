@@ -8,23 +8,13 @@ import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.Window;
-import nl.dotjava.javafx.components.MainBoxPanel;
+import nl.dotjava.javafx.components.AboutStage;
+import nl.dotjava.javafx.components.MainMobilePanel;
+import nl.dotjava.javafx.support.AppLogger;
 import nl.dotjava.javafx.support.MotionEventListener;
 
 import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
@@ -37,26 +27,27 @@ public class NopApplication extends Application implements MotionEventListener {
     private volatile boolean cleanupAlreadyRun = false;
     private View view;
     private VBox rootVbox;
+    private Stage aboutStage;
 
     @Override
     public void init() {
-        System.out.println("***** 1. init");
+        AppLogger.init(true);
+        AppLogger.info("1. init");
         cleanupAlreadyRun = false;
-        // add shutdown hook early in application lifecycle
+        // add shutdown hook early in lifecycle
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("***** shutdown hook triggered");
+            AppLogger.info("Shutdown hook triggered");
             cleanupResources();
         }));
-        // setup lifecycle service if available
         setupLifecycleService();
 
         // load base view
         appManager.addViewFactory(HOME_VIEW, () -> {
-            System.out.println("***** javafx version " + System.getProperty("javafx.version") + " on java " + System.getProperty("java.version"));
-            rootVbox = new MainBoxPanel();
+            AppLogger.info("Javafx version " + System.getProperty("javafx.version") + " on java " + System.getProperty("java.version"));
+            rootVbox = new MainMobilePanel();
             rootVbox.setAlignment(Pos.CENTER);
             // register motion listener
-            ((MainBoxPanel)rootVbox).addMotionListener(this);
+            ((MainMobilePanel)rootVbox).addMotionListener(this);
 
             this.view = new View(rootVbox) {
                 @Override
@@ -66,31 +57,30 @@ public class NopApplication extends Application implements MotionEventListener {
                     appBar.setVisible(false);
                 }
             };
-            System.out.println("***** returning view");
+            AppLogger.info("Returning view");
             return this.view;
         });
     }
 
     @Override
     public void start(Stage stage) {
-        System.out.println("***** 2. stage start");
+        AppLogger.info("2. stage start");
         appManager.start(stage);
     }
 
     private void postInit(Scene scene) {
-        System.out.println("***** 3. postInit with scene");
-        // add back or previous button handler
+        AppLogger.info("3. postInit with scene");
         if (Platform.isAndroid()) {
             addBackButtonHandler(scene);
         }
     }
 
-    // handler for back or escape key at platform level
+    // add handler for back or escape key at platform level
     private void addBackButtonHandler(Scene scene) {
-        System.out.println("***** 4. adding keyhandler to scene");
+        AppLogger.info("4. adding keyhandler to scene");
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == ESCAPE || event.getCode() == BACK_SPACE) {
-                System.out.println("***** 5. android go-back ("+event.getCode()+") was pressed");
+                AppLogger.info("5. android go-back ("+event.getCode()+") was pressed");
                 handleBackButton();
                 event.consume();
             }
@@ -99,59 +89,60 @@ public class NopApplication extends Application implements MotionEventListener {
 
     @Override
     public void sameClickEvent() {
+        AppLogger.info("5. three-times-clicked event");
         handleBackButton();
     }
 
-    @Override
-    public void swipeLeftEvent() {
-        // swipe left detected in main panel, do some nice stuff
-        System.out.println("***** Swipe Left detected!");
-    }
-
-    @Override
-    public void swipeRightEvent() {
-        // swipe right detected in main panel, do some other stuff
-        System.out.println("***** Swipe Right detected!");
-    }
-
     private void handleBackButton() {
-        System.out.println("***** 6. trying to gracefully exiting the application");
+        AppLogger.info("6. trying to gracefully exiting the application");
         if (Platform.isAndroid()) {
             cleanupResources();
-            System.out.println("***** 7. platform exit (javafx)");
+            AppLogger.info("7. platform exit (javafx)");
             javafx.application.Platform.exit();
             // try not to use system.exit as it can cause abrupt termination, instead use a more gentle approach through services
             Services.get(LifecycleService.class).ifPresent(service -> {
-                System.out.println("***** 8. requesting android activity finish");
+                AppLogger.info("8. requesting android activity finish");
                 try {
                     service.shutdown();
                 } catch (Exception e) {
-                    System.out.println("***** error during lifecycle shutdown: " + e);
+                    AppLogger.error("Error during lifecycle shutdown", e);
                 }
             });
-            // onPause event is triggered (V/GraalActivity)
+            // onPause event is triggered here (V/GraalActivity)
+        }
+        if (Platform.isDesktop()) {
+            cleanupResources();
+            AppLogger.info("7. desktop exit (javafx)");
+            javafx.application.Platform.exit();
         }
     }
 
     @Override
     public void stop() throws Exception {
-        System.out.println("***** 9. application stop method called");
+        AppLogger.info("9. application stop method called");
         cleanupResources();
-        System.out.println("***** 10. calling super.stop()");
+        AppLogger.info("10. calling super.stop()");
         super.stop();
-        // pause (lifecycle) event is triggered
-        // onStop event is triggered (V/GraalActivity)
-        // onDestroy event is triggered  (V/GraalActivity)
+        // also triggered is:
+        // pause (lifecycle) event
+        // onStop event (V/GraalActivity)
+        // onDestroy event (V/GraalActivity)
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    @Override
+    public void swipeLeftEvent() {
+        AppLogger.info("Swipe Left detected");
+        showAboutStage();
+    }
+
+    @Override
+    public void swipeRightEvent() {
+        AppLogger.info("Swipe Right detected");
     }
 
     private void cleanupResources() {
         if (cleanupAlreadyRun) { return; }
         cleanupAlreadyRun = true;
-        // cleanup whatever needs cleaning
     }
 
     private void setupLifecycleService() {
@@ -161,11 +152,33 @@ public class NopApplication extends Application implements MotionEventListener {
 
             // when home (or switch application) button was pressed
             lifecycleService.addListener(LifecycleEvent.PAUSE, () -> {
-                System.out.println("***** pause lifecycle event");
+                AppLogger.info("Pause lifecycle event");
                 cleanupResources();
             });
             // when home button was pressed and app is called back again
-            lifecycleService.addListener(LifecycleEvent.RESUME, () -> System.out.println("***** resume lifecycle event"));
+            lifecycleService.addListener(LifecycleEvent.RESUME, () -> AppLogger.info("Resume lifecycle event"));
         }
+    }
+
+    private void showAboutStage() {
+        javafx.application.Platform.runLater(() -> {
+            AppLogger.info("Showing popup");
+            try {
+                if (aboutStage != null && aboutStage.isShowing()) {
+                    aboutStage.close();
+                    aboutStage = null;
+                    return;
+                }
+                aboutStage = new AboutStage(view.getScene().getWindow());
+                aboutStage.show();
+            } catch (Exception e) {
+                AppLogger.error("Error showing image popup", e);
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
