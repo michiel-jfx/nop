@@ -6,7 +6,7 @@
 
     <groupId>nl.dotjava.javafx</groupId>
     <artifactId>nop</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <name>Nop</name>
 
     <properties>
@@ -35,6 +35,9 @@
         <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
         <gluonfx.maven.plugin.version>1.0.28</gluonfx.maven.plugin.version>
+
+        <org.junit.jupiter.version>6.0.2</org.junit.jupiter.version>
+        <org.assertj.version>3.27.7</org.assertj.version>
 
         <main.class>nl.dotjava.javafx.nop.NopApplication</main.class>
     </properties>
@@ -70,11 +73,26 @@
             <artifactId>storage</artifactId>
             <version>${gluonhq.attach.storage.version}</version>
         </dependency>
-        <!-- <dependency>                                       -->
-        <!--     <groupId>com.gluonhq.attach</groupId>          -->
-        <!--     <artifactId>statusbar</artifactId>             -->
-        <!--     <version>${gluonhq.attach.statusbar.version}</version> -->
-        <!-- </dependency>                                      -->
+
+        <!-- testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${org.junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${org.junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${org.assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -148,7 +166,7 @@
                     <releaseConfiguration>
                         <appLabel>Nop</appLabel>
                         <versionCode>1</versionCode>
-                        <versionName>1.1</versionName>
+                        <versionName>1.2</versionName>
                     </releaseConfiguration>
                 </configuration>
             </plugin>
