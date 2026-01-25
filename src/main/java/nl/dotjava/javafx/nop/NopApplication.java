@@ -108,7 +108,12 @@ public class NopApplication extends Application implements MotionEventListener {
                     AppLogger.error("Error during lifecycle shutdown", e);
                 }
             });
-            // onPause event is triggered (V/GraalActivity)
+            // onPause event is triggered here (V/GraalActivity)
+        }
+        if (Platform.isDesktop()) {
+            cleanupResources();
+            AppLogger.info("7. desktop exit (javafx)");
+            javafx.application.Platform.exit();
         }
     }
 
@@ -119,9 +124,9 @@ public class NopApplication extends Application implements MotionEventListener {
         AppLogger.info("10. calling super.stop()");
         super.stop();
         // also triggered is:
-        // pause (lifecycle) event is triggered
-        // onStop event is triggered (V/GraalActivity)
-        // onDestroy event is triggered  (V/GraalActivity)
+        // pause (lifecycle) event
+        // onStop event (V/GraalActivity)
+        // onDestroy event (V/GraalActivity)
     }
 
     @Override

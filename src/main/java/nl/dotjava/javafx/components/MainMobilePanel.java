@@ -18,10 +18,9 @@ public class MainMobilePanel extends VBox {
         setPrefHeight(2139);
         this.clickMeasurement = new ClickMeasurement();
 
-        // Add EventHandlers
         // 1. Key events
         setOnInputMethodTextChanged(event -> {
-            AppLogger.info("Input method changed!");
+            AppLogger.info("Input method changed");
         });
         setOnKeyPressed(event -> {
             AppLogger.info("Key pressed: " + event.getCode());
@@ -44,18 +43,19 @@ public class MainMobilePanel extends VBox {
             AppLogger.info("Mouse pressed");
         });
         setOnMouseExited(event -> {
+            // only useful when mouse is present (and running on the desktop)
             AppLogger.info("Mouse exited");
         });
 
-        // 3. Rotating events
+        // 3. Rotating gesture events
         setOnRotate(event -> {
-            AppLogger.info("Rotate detected");
+            AppLogger.info("Rotate gesture detected with angle: " + event.getAngle());
         });
         setOnRotationStarted(event -> {
-            AppLogger.info("Rotation started detected");
+            AppLogger.info("Rotation gesture started");
         });
         setOnRotationFinished(event -> {
-            AppLogger.info("Rotation finished detected");
+            AppLogger.info("Rotation gesture finished");
         });
 
         // 4. Swipe Events
@@ -66,22 +66,21 @@ public class MainMobilePanel extends VBox {
             notifySwipeRight();
         });
         setOnSwipeUp(event -> {
-            AppLogger.info("Swipe Up detected!");
+            AppLogger.info("Swipe up detected");
         });
         setOnSwipeDown(event -> {
-            AppLogger.info("Swipe Down detected!");
+            AppLogger.info("Swipe down detected");
         });
 
         // 5. Touch events
-        // temporarily disabled because much
-        setOnTouchMoved(event -> {
-            //AppLogger.info("Touch Moved, Coordinates: " + event.getTouchPoint().getX() + ", " + event.getTouchPoint().getY());
-        });
         setOnTouchPressed(event -> {
-            //AppLogger.info("Touch Pressed, TouchCount = " + event.getTouchCount());
+            AppLogger.info("Touch pressed, TouchCount = " + event.getTouchCount());
+        });
+        setOnTouchMoved(event -> {
+            AppLogger.info("Touch moved, Coordinates: " + event.getTouchPoint().getX() + ", " + event.getTouchPoint().getY());
         });
         setOnTouchReleased(event -> {
-            //AppLogger.info("Touch Released");
+            AppLogger.info("Touch released");
         });
 
         // 6. Zoom events
@@ -89,11 +88,27 @@ public class MainMobilePanel extends VBox {
             AppLogger.info("Zoom detected with factor: " + event.getZoomFactor());
         });
         setOnZoomStarted(event -> {
-            AppLogger.info("Zoom started!");
+            AppLogger.info("Zoom started");
         });
         setOnZoomFinished(event -> {
-            AppLogger.info("Zoom finished!");
+            AppLogger.info("Zoom finished");
         });
+
+        // 7. Device rotation events
+        sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.heightProperty().addListener((o, oldH, newH) -> onOrientationChange());
+            }
+        });
+    }
+
+    private void onOrientationChange() {
+        if (getScene() != null) {
+            double width = getScene().getWidth();
+            double height = getScene().getHeight();
+            String orientation = width > height ? "landscape" : "portrait";
+            AppLogger.info("Device orientation is " + orientation + " [" + (int)width + "x" + (int)height + "]");
+        }
     }
 
     public void addMotionListener(MotionEventListener listener) {

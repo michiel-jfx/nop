@@ -3,7 +3,6 @@ package nl.dotjava.javafx.components;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -24,19 +23,17 @@ public class AboutStage extends Stage {
         initOwner(ownerWindow);
         initModality(Modality.NONE);
 
-        // Load image
+        // Load image from resources
         ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/images/appstore.png")));
         imageView.setFitWidth(300);
         imageView.setPreserveRatio(true);
 
-        // Create a container with a close button
-        Button closeButton = new Button("Close");
-        closeButton.setOnAction(e -> close());
-
-        VBox popupContent = new VBox(10, imageView, closeButton);
+        // Add container with mouseClicked handler
+        VBox popupContent = new VBox(10, imageView);
         popupContent.setAlignment(Pos.CENTER);
         popupContent.setPadding(new Insets(15));
         popupContent.setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 0);");
+        popupContent.setOnMouseClicked(e -> close());
 
         // Add a click event on the background to close
         StackPane root = new StackPane(popupContent);
