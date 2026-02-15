@@ -14,7 +14,7 @@ The mobile app is built with the following versions:
 
 | What                   | Version               | See                                                                  |
 |------------------------|-----------------------|----------------------------------------------------------------------|
-| Nop                    | 0.1                   | this, see https://www.dotjava.nl/nop                                 |
+| Nop                    | 0.2                   | this, see https://www.dotjava.nl/nop                                 |
 | GraalVM 22 with Gluon  | native-image 22.1.0.1 | https://github.com/graalvm/graalvm-ce-builds/releases/tag/jdk-22.0.1 |
 | JavaFX controls & fxml | 17.0.17               | https://mvnrepository.com/artifact/org.openjfx/javafx-controls       |
 | Controlsfx             | 11.2.2                | https://mvnrepository.com/artifact/org.controlsfx/controlsfx         |
@@ -34,6 +34,9 @@ mvn clean
 mvn -Pandroid gluonfx:build gluonfx:package
 mvn -Pandroid gluonfx:install
 mvn -Pandroid gluonfx:nativerun
+check_elf_alignment target/gluonfx/aarch64-android/gvm/Nop.apk
+check_elf_alignment target/gluonfx/aarch64-android/libNop.so
+cp target/gluonfx/aarch64-android/gvm/Nop.aab ~/Downloads/signed/
 ```
 If you find compilation slower than usual, you can try these:
 ```
