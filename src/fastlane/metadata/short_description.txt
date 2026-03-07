@@ -1,0 +1,15 @@
+<en-GB>
+The mobile app that does nothing. Seriously. 100% free and open source.
+</en-GB>
+
+<nl-NL>
+De mobiele app die echt helemaal niets doet. 100% gratis en open source.
+</nl-NL>
+
+<nl-BE>
+De mobiele app die helemaal niets doet. 100% gratis en open source.
+</nl-BE>
+
+<de-DE>
+Die mobile App, die absolut nichts tut. Ernsthaft. 100 % Open Source.
+</de-DE>

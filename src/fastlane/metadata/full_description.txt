@@ -1,0 +1,103 @@
+<en-GB>
+The mobile application that does nothing.
+
+Well, not entirely nothing. The app can exit nicely by tapping three times with a constant amount of delay in between taps. It also detects swiping to show you an about box.
+
+Furthermore it has the following event handlers which do completely nothing:
+- onRotate (gesture and device!)
+- onZoom
+- onTouch
+
+Because of these interactions, a popup will be shown at startup notifying the non-commercial version of Gluon Mobile is used.
+
+The app is fully written in Java and 100% open source, so you can use this as a base for other mobile applications.
+
+The app is free and open source. The source code is available on GitHub (https://github.com/michiel-jfx/nop). For more information, see https://www.dotjava.nl/nop/
+
+The app contains no ads, no cookies, does not track and doesn't perform any data analysis.
+
+It's just an easy-to-use and effective nothingness app for free!
+
+
+Features:
+- No ads, no cookies, no tracking, no data analysis
+- 100% open source and written in Java
+- Exit functionality
+- Unique No-Op logo
+</en-GB>
+
+<nl-NL>
+De mobiele applicatie die niets doet.
+
+Nou ja, niet helemaal niets. De app kan netjes worden afgesloten door drie keer te tappen met een constante tussenpauze. Daarnaast detecteert de app swipe-bewegingen om een about venster te tonen.
+
+Bovendien beschikt de app over de volgende event handlers die absoluut niets doen:
+- onRotate (gebaar en apparaat)
+- onZoom
+- onTouch
+
+Door deze interactie met de mobiele telefoon, wordt er een popup van Gluon Mobile getoond bij het starten (in verband met het gebruik van de non-commercial versie van Gluon Mobile).
+
+De app is volledig geschreven in Java en is 100% open source, dus je kunt dit gebruiken als basis voor andere mobiele applicaties.
+
+
+Features:
+- Geen advertenties, geen cookies, geen verborgen onzin, geen (gebruikers)analyse
+- 100% open source en geschreven in Java
+- Netjes afsluiten functionaliteit
+- Uniek 'No-Op' logo
+</nl-NL>
+
+<nl-BE>
+De mobiele applicatie die niets doet.
+
+Nou ja, niet helemaal niets. De sluit netjes na drie keer te tappen met een constante tussenpauze. Daarnaast detecteert de app swipe-bewegingen om een about venster te tonen.
+
+Bovendien beschikt de app over de volgende event handlers die absoluut niets doen:
+- onRotate (gebaar en apparaat)
+- onZoom
+- onTouch
+
+Door deze interactie met de mobiele telefoon, wordt er een popup van Gluon Mobile getoond bij het starten (in verband met het gebruik van de non-commercial versie van Gluon Mobile).
+
+De app is volledig geschreven in Java en is 100% open source, dus je kunt dit gebruiken als basis voor andere mobiele applicaties.
+
+
+Features:
+- Geen advertenties, geen cookies, geen verborgen onzin, geen (gebruikers)analyse
+- 100% open source en geschreven in Java
+- Netjes afsluiten functionaliteit
+- Uniek 'No-Op' logo
+</nl-BE>
+
+<de-DE>
+Die mobile App, die absolut nichts tut.
+
+Nun ja, nicht ganz nichts. Die App lässt sich sauber beenden, indem man dreimal mit einer gleichmäßigen Verzögerung dazwischen tippt. Außerdem erkennt sie Wischgesten, um ein „Über diese App“-Fenster anzuzeigen.
+
+Darüber hinaus verfügt sie über die folgenden Event-Handler, die rein gar nichts bewirken:
+- onRotate (Geste und Gerät)
+- onZoom
+- onTouch
+
+Aufgrund dieser Interaktion mit dem Handy wird beim Start ein Gluon Mobile Pop-up angezeigt, das darauf hinweist, dass die nicht-kommerzielle Version von Gluon Mobile verwendet wird.
+
+Die App ist komplett in Java geschrieben und zu 100 % Open Source, sodass du sie als Basis für andere mobile Anwendungen nutzen kannst.
+
+Features:
+- Keine Werbung, keine Cookies, kein Tracking, keine Datenanalyse
+- 100 % Open Source und in Java geschrieben
+- Beenden-Funktion
+- Einzigartiges „No-Op“-Logo
+</de-DE>
+
+
+Search tags:
+Developer & Open Source
+Java, Open Source, Source Code, Template, Boilerplate, Android Development, Github, No-Op.
+
+Minimalism & Privacy
+Minimalist, No Permissions, No Ads, Privacy, Ad-free, Clean, Lightweight, Simple App, No Tracking.
+
+Humor & Novelty
+Useless App, Nothing, Just for Fun, Joke App, Paradox, Zen, Boredom, Digital Art.
