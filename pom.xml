@@ -32,22 +32,25 @@
         <gluonhq.attach.display.version>4.0.24</gluonhq.attach.display.version>
         <gluonhq.attach.storage.version>4.0.24</gluonhq.attach.storage.version>
         <gluonhq.attach.statusbar.version>4.0.24</gluonhq.attach.statusbar.version>
-        <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
-        <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
-        <gluonfx.maven.plugin.version>1.0.28</gluonfx.maven.plugin.version>
 
         <org.junit.jupiter.version>6.0.2</org.junit.jupiter.version>
         <org.assertj.version>3.27.7</org.assertj.version>
+
+        <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
+        <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
+        <gluonfx.maven.plugin.version>1.0.28</gluonfx.maven.plugin.version>
 
         <main.class>nl.dotjava.javafx.nop.NopApplication</main.class>
     </properties>
 
     <dependencies>
+        <!-- JavaFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>${org.openjfx.controls.version}</version>
         </dependency>
+        <!-- GluonHQ -->
         <dependency>
             <groupId>com.gluonhq</groupId>
             <artifactId>charm-glisten</artifactId>
@@ -74,7 +77,7 @@
             <version>${gluonhq.attach.storage.version}</version>
         </dependency>
 
-        <!-- testing -->
+        <!-- Testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -125,6 +128,7 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
+                    <release>17</release>
                 </configuration>
             </plugin>
             <!-- gluonfx maven plugin to build native android or ios package -->
@@ -140,6 +144,7 @@
                     <!--     <packageName>nl.dotjava.javafx.nop</packageName>    -->
                     <!-- </android> -->
                     <nativeImageArgs>
+                        <arg>-J-Xmx8g</arg>
                         <arg>--allow-incomplete-classpath</arg>
                         <!-- <arg>-H:CompilerBackend=llvm</arg>                       -->
                         <!-- <arg>-H:CompilerPath=aarch64-linux-android30-clang</arg> -->
